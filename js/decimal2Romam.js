@@ -51,6 +51,7 @@ function romamSeparator (decimal, romam) {
       // console.log('LESS THAN')
       nearest = nearestRomanNumberLessThan(decimal)
     } else {
+      nearest.equation = `-${lessThan.value} +${nearest.value}`
       nearest.letter = lessThan.letter + nearest.letter
       nearest.value -= lessThan.value
       delete nearest.distance
@@ -63,7 +64,7 @@ function romamSeparator (decimal, romam) {
   // console.log('NEAREST', nearest)
   // if (x >= 3) return nearest
 
-  romam.equation.push('+' + nearest.value)
+  romam.equation.push(nearest.equation || '+' + nearest.value)
   romam.total.push(nearest.letter)
   x++
   return romamSeparator(decimal - nearest.value, romam)
