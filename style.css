@@ -1,0 +1,78 @@
+.pure-toolbar {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header.pure-toolbar {
+  justify-content: space-around;
+}
+
+.pure-toolbar h1 {
+  margin: 0px;
+}
+
+.footer.pure-toolbar {
+  justify-content: space-between;
+}
+
+.full-page {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pure-form-aligned {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  text-align: center;
+}
+
+.pure-button {
+  height: 100%;
+}
+
+.pure-slim-button {
+  padding: 0px;
+}
+
+.backspace {
+  margin: 0px 5px;
+}
+
+.icono-leftArrow {
+  color: black;
+}
+
+.equation,
+.result {
+  margin: 1px 0px;
+}
+
+.mt {
+  margin-top: 10px;
+}
+
+.mb {
+  margin-bottom: 10px;
+}
+
+.digit {
+  height: 50px;
+  font-weight: 800;
+}
+
+.my {
+  margin: 10px 0px;
+}

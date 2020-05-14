@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@2.0.1/build/pure-min.css"
+    />
+    <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Roman Numeral Converter</title>
+  </head>
+  <body>
+    <div class="full-page">
+      <div class="header pure-toolbar">
+        <h1 class="title">
+          Roman Numeral Converter
+        </h1>
+      </div>
+      <div class="pure-form pure-form-aligned pure-u-3-5">
+        <div id="true" class="pure-g">
+          <x-romam-text-field
+            id="romam"
+            value="XXX"
+            equation="equationDecimal"
+            result="resultDecimal"
+            class="pure-u-5-6"
+          ></x-romam-text-field>
+          <x-backspace-button input-text="romam" class="pure-u-1-6">
+            <div class="icono-leftArrow"></div>
+          </x-backspace-button>
+          <input
+            type="text"
+            id="equationDecimal"
+            class="equation pure-input-rounded pure-u-1 mt"
+            readonly
+          />
+          <input
+            type="text"
+            id="resultDecimal"
+            class="result pure-input-rounded pure-u-1 mb"
+            readonly
+          />
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >C</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >D</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >M</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >X</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >V</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1-3"
+            >L</x-digit-button
+          >
+          <x-digit-button display="romam" class="digit pure-u-1"
+            >I</x-digit-button
+          >
+        </div>
+        <div id="false" class="pure-g" style="display: none">
+          <x-decimal-text-field
+            id="decimal"
+            value="30"
+            equation="equationRomam"
+            result="resultRomam"
+            class="pure-u-5-6"
+          ></x-decimal-text-field>
+          <x-backspace-button input-text="decimal" class="pure-u-1-6">
+            <div class="icono-leftArrow"></div>
+          </x-backspace-button>
+          <input
+            type="text"
+            id="equationRomam"
+            class="equation pure-input-rounded pure-u-1 mt"
+            readonly
+          />
+          <input
+            type="text"
+            id="resultRomam"
+            class="result pure-input-rounded pure-u-1 mb"
+            readonly
+          />
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >7</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >8</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >9</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >4</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >5</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >6</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >1</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >2</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1-3"
+            >3</x-digit-button
+          >
+          <x-digit-button display="decimal" class="pure-u-1">0</x-digit-button>
+        </div>
+        <x-toggle-button
+          show="Decimal to Romam"
+          hide="Romam to Decimal"
+          true="true"
+          false="false"
+          class="pure-u-1-3 my"
+          >Decimal to Romam
+        </x-toggle-button>
+      </div>
+      <div class="footer pure-toolbar">©2020</div>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/utils.js"></script>
+  <script type="text/javascript" src="js/romam2Decimal.js"></script>
+  <script type="text/javascript" src="js/decimal2Romam.js"></script>
+
+  <script type="text/javascript" src="js/inputTextFactory.js"></script>
+  <script type="text/javascript" src="js/components/RomamTextField.js"></script>
+  <script
+    type="text/javascript"
+    src="js/components/DecimalTextField.js"
+  ></script>
+
+  <script type="text/javascript" src="js/buttonFactory.js"></script>
+  <script
+    type="text/javascript"
+    src="js/components/BackspaceButton.js"
+  ></script>
+  <script type="text/javascript" src="js/components/DigitButton.js"></script>
+  <script type="text/javascript" src="js/components/ToggleButton.js"></script>
+</html>
