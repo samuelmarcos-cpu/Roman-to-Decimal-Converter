@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Uma simples aplicação web estática que converte número romano para decimal e decimal para romano
+Uma simples aplicação web estática que converte número romano para decimal
 
 Acesse por https://samuelmarcos-cpu.github.io/Roman-to-Decimal-Converter/
 
