@@ -19,14 +19,35 @@ function inputTextFactory (handler) {
       return this._value
     }
 
+    clean () {
+      this.result.value = ''
+      this.equation.value = ''
+    }
+
+    error () {
+      this.result.value = 'ERROR'
+      this.equation.value = 'ERROR'
+    }
+
     set value (decimal) {
       this._value = decimal
       this.display.value = decimal
 
+      if (decimal == '') {
+        this.clean()
+        return
+      }
+
       if (this.display == undefined || this.result == undefined) return
 
-      const { total, equation } = handler(decimal)
-      this.result.value = total
+      const result = handler(decimal)
+      if (result == undefined) {
+        this.error()
+        return
+      }
+
+      const { value, equation } = result
+      this.result.value = value
       this.equation.value = equation
     }
 

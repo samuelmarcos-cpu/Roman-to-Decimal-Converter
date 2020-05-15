@@ -1,3 +1,14 @@
+function getRomamNumberSubtracter (letter) {
+  const subtracterLetter = findRomamNumberSubtracter(letter)
+  const subtracterValue = romamTable[subtracterLetter]
+  const value = romamTable[letter]
+  return {
+    equation: `-${subtracterValue} +${value}`,
+    letters: subtracterLetter + letter,
+    value: value - subtracterValue
+  }
+}
+
 function nearestRomanNumberWidthTable (decimal, romamTable) {
   const distancesRomam = []
   let lastDistance
@@ -7,7 +18,7 @@ function nearestRomanNumberWidthTable (decimal, romamTable) {
     if (lastDistance < distance) break
 
     const romamInfo = { letter, value, distance }
-    if (distance === 0) {
+    if (distance == 0) {
       return romamInfo
     }
     distancesRomam.push(romamInfo)
@@ -33,54 +44,50 @@ function nearestRomanNumberLessThan (decimal) {
   return nearestRomanNumberWidthTable(decimal, newRomamTable)
 }
 
-let x = 0
-function romamSeparator (decimal, romam) {
-  if (decimal === 0) {
+function romanConverter (decimal, romam) {
+  if (decimal == 0) {
     romam.equation = romam.equation.join(' ')
-    romam.total = romam.total.join('')
+    romam.value = romam.value.join('')
     return romam
   }
 
   let nearest = nearestRomanNumber(decimal)
   let result = decimal - nearest.value
   if (result < 0) {
-    const lessThan = nearestRomanNumberLessThan(Math.abs(result))
-    result += lessThan.value
+    const subtracter = getRomamNumberSubtracter(nearest.letter)
+    result = decimal - subtracter.value
 
     if (result < 0) {
-      // console.log('LESS THAN')
       nearest = nearestRomanNumberLessThan(decimal)
     } else {
-      nearest.equation = `-${lessThan.value} +${nearest.value}`
-      nearest.letter = lessThan.letter + nearest.letter
-      nearest.value -= lessThan.value
-      delete nearest.distance
+      subtracter.letter = subtracter.letters
+      nearest = subtracter
     }
-
-    // console.log('RESULT', result)
-    // console.log('NEAREST', nearest)
   }
-  // console.log('RESULT', result)
-  // console.log('NEAREST', nearest)
-  // if (x >= 3) return nearest
 
   romam.equation.push(nearest.equation || '+' + nearest.value)
-  romam.total.push(nearest.letter)
-  x++
-  return romamSeparator(decimal - nearest.value, romam)
+  romam.value.push(nearest.letter)
+
+  let count = 0
+  romam.value.every(letter => {
+    count++
+    return letter == nearest.letter && count < 4
+  })
+  if (count > 3) return
+
+  return romanConverter(decimal - nearest.value, romam)
 }
 
-// mudar total para value
 const decimal2Romam = decimal => {
-  if (decimal == undefined || decimal == false)
+  if (decimal <= 0) {
     return {
-      equation: '',
-      total: 0
+      equation: '0',
+      value: ''
     }
-  x = 0
-  return romamSeparator(decimal, {
+  }
+  return romanConverter(decimal, {
     equation: [],
-    total: []
+    value: []
   })
 }
 
@@ -104,12 +111,17 @@ const decimal2RomamArrayTest = [
   { value: 500, result: 'D' },
   { value: 1000, result: 'M' },
   { value: 1500, result: 'MD' },
-  { value: 3000, result: 'MMM' }
+  { value: 3000, result: 'MMM' },
+  { value: 1998, result: 'MCMXCVIII' },
+  { value: 3838, result: 'MMMDCCCXXXVIII' },
+  { value: 3999, result: 'MMMCMXCIX' }
 ]
 
 function decimal2RomamTest (arrayTest) {
-  arrayTest.forEach(({ value, result }, index) => {
+  arrayTest.every(({ value, result }, index) => {
     const { total } = decimal2Romam(value)
-    console.log(`${index + 1}) ${value} => ${result} | ${total}`)
+    const passed = result == total
+    console.log(`${index + 1}) ! ${passed} ! ${total} => ${result} | ${total}`)
+    return passed
   })
 }
