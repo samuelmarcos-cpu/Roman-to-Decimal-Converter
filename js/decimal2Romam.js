@@ -90,38 +90,3 @@ const decimal2Romam = decimal => {
     value: []
   })
 }
-
-const decimal2RomamArrayTest = [
-  { value: 1, result: 'I' },
-  { value: 2, result: 'II' },
-  { value: 3, result: 'III' },
-  { value: 4, result: 'IV' },
-  { value: 5, result: 'V' },
-  { value: 6, result: 'VI' },
-  { value: 7, result: 'VII' },
-  { value: 8, result: 'VIII' },
-  { value: 9, result: 'IX' },
-  { value: 10, result: 'X' },
-  { value: 15, result: 'XV' },
-  { value: 20, result: 'XX' },
-  { value: 30, result: 'XXX' },
-  { value: 50, result: 'L' },
-  { value: 100, result: 'C' },
-  { value: 150, result: 'CL' },
-  { value: 500, result: 'D' },
-  { value: 1000, result: 'M' },
-  { value: 1500, result: 'MD' },
-  { value: 3000, result: 'MMM' },
-  { value: 1998, result: 'MCMXCVIII' },
-  { value: 3838, result: 'MMMDCCCXXXVIII' },
-  { value: 3999, result: 'MMMCMXCIX' }
-]
-
-function decimal2RomamTest (arrayTest) {
-  arrayTest.every(({ value, result }, index) => {
-    const { total } = decimal2Romam(value)
-    const passed = result == total
-    console.log(`${index + 1}) ! ${passed} ! ${total} => ${result} | ${total}`)
-    return passed
-  })
-}
