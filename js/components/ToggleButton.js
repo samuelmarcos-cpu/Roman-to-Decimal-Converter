@@ -1,17 +1,21 @@
-buttonFactory({
-  name: 'toggle',
-  click () {
-    this.toggle = this.toggle == false
+customElements.define(
+  'x-toggle-button',
+  class Toggle extends Button {
+    _name = 'toggle'
 
-    const elTrue = parentGetElementById(this, this.getAttribute(true))
-    elTrue.style.display = this.toggle == false ? 'none' : ''
+    click () {
+      this.toggle = this.toggle == false
 
-    const elFalse = parentGetElementById(this, this.getAttribute(false))
-    elFalse.style.display = this.toggle ? 'none' : ''
+      const elTrue = parentGetElementById(this, this.getAttribute(true))
+      elTrue.style.display = this.toggle == false ? 'none' : ''
 
-    this.innerHTML = this.toggle
-      ? this.getAttribute('show')
-      : this.getAttribute('hide')
-    this.render()
+      const elFalse = parentGetElementById(this, this.getAttribute(false))
+      elFalse.style.display = this.toggle ? 'none' : ''
+
+      this.innerHTML = this.toggle
+        ? this.getAttribute('show')
+        : this.getAttribute('hide')
+      this.render()
+    }
   }
-})
+)
